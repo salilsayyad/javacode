@@ -1,0 +1,106 @@
+package salil;
+
+
+import java.util.*;
+class Phone{
+	
+	int phoneid,phoneprice;
+	String brand,os;
+	
+	public Phone(int phoneid,String os,String brand,int price)
+	{
+		this.phoneid=phoneid;
+		this.phoneprice=price;
+		this.os=os;
+		this.brand=brand;
+	}
+   int getprice()
+   {
+	return phoneprice;   
+   }
+   
+   int getid()
+   {
+	   return phoneid;
+   }
+	String getbrand()
+	{
+		return brand;
+	}
+	String getos()
+	{
+		return os;
+	}
+	
+}
+
+
+public class Mymain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		Phone[] p=new Phone[4];
+		for(int i=0;i<p.length;i++)
+		{
+			int id=sc.nextInt();
+			sc.nextLine();
+			String os=sc.nextLine();
+			String brand=sc.nextLine();
+			int price=sc.nextInt();
+			p[i]=new Phone(id,os,brand,price);
+		}
+		sc.nextLine();
+		String brand=sc.nextLine();
+		String os=sc.nextLine();
+		int s=findpriceforgivenbrand(p,brand);		
+			System.out.println(s);
+		Phone res=getphoneidbasedonos(os,p);	
+		if(res==null)
+		{
+			System.out.println("no such id of device");	
+			
+		}
+		else
+		System.out.println(res.getid());	
+				
+				
+		sc.close();
+
+	}
+
+	static int  findpriceforgivenbrand(Phone[] a,String brand)
+	{
+		int sum=0;
+		for(int i=0;i<a.length;i++)
+		{
+			if(a[i].getbrand().equalsIgnoreCase(brand))
+			{
+				sum+=a[i].getprice();
+			}
+			
+		}
+		
+		
+		
+		return sum;
+	}
+	
+	static Phone getphoneidbasedonos(String os,Phone[] a)
+	{  Phone temp=null;
+	     for(int i=0;i<a.length;i++)
+	     {
+	    	 if(a[i].getos().equalsIgnoreCase(os) && a[i].getprice()>=50000 )
+	     {
+	    	 temp=a[i];
+	    	// System.out.println("hi m execute");
+	     }
+	    	 
+	     }
+	
+		return temp;
+	}
+	
+	
+}
+
